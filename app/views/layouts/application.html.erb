@@ -6,9 +6,51 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
 
-<%= yield %>
+<body style="" data-ember-extension="1">
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Gadget Manager</a>
+        </div>
+
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li>
+              <%= link_to "All Gadgets", gadgets_path %>
+            </li>
+            <% unless user_signed_in? %>
+              <li>
+                <%= link_to "Sign up", new_user_registration_path %>
+              </li>
+              <li>
+                <%= link_to "sign in", new_user_session_path %>
+              </li>
+            <% end %>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container" style="padding-top: 60px;">
+      <% if user_signed_in? %>
+        Signed in as <%= current_user.email %>
+        <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+      <% end %>
+
+      <%= yield %>
+    </div>
+</body>
+
+
 
 </body>
 </html>
