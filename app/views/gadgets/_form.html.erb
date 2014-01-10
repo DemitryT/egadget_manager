@@ -1,0 +1,19 @@
+<%= form_for(@gadget) do |f| %>
+  <p>
+    <b>gadget name</b><br />
+    <%= f.text_field :name %><br />
+
+    <b>gadget quantity</b><br />
+    <%= f.text_field :quantity %><br />
+
+    <b>Purchased on</b><br />
+    <%= f.date_select(:date_purchased, :order => [:month, :day, :year]) %><br />
+
+    <%= f.hidden_field :user_id, value: current_user.id.to_s %>
+  </p>
+
+  <br />
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

@@ -1,0 +1,30 @@
+<h1>Listing Gadgets</h1>
+
+<% if @all_gadgets.present? %>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Date purchased</th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    <% @all_gadgets.each do |gadget| %>
+      <tr>
+        <td><%= gadget.name %></td>
+        <td><%= gadget.quantity %></td>
+        <td><%= gadget.date_purchased %></td>
+        <td><%= link_to "Show", gadget %></td>
+        <td><%= link_to "Edit", edit_gadget_path(gadget) %></td>
+        <td><%= link_to "Remove", gadget, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  No gadgets added yet.
+<% end %>
+
+<br />
+
+<%= link_to "New gadget", new_gadget_path %>
