@@ -3,5 +3,5 @@ EgadgetManager::Application.routes.draw do
 
   resources :gadgets
 
-  root :to => 'gadgets#index'
+  root :to => 'pages#home'
 end

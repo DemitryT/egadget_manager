@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h2>
+  <%= @gadget.name %>
+  <%= link_to "Edit", edit_gadget_path(@gadget), class: "btn btn-link" %>
+</h2>
+
+<div class="container-fluid well span6">
+  <p>
+    <b>Manufacturer</b>:
+    <%= @gadget.manufacturer.present? ? @gadget.manufacturer : "(not provided)" %>
+  </p>
+  <p>
+    <b>Quantity</b>:
+    <%= @gadget.quantity %>
+  </p>
+  <p>
+    <b>Date purchased</b>:
+    <%= @gadget.date_purchased.to_time.strftime('%B %e, %Y') %>
+  </p>
+</div>
+
+<%= link_to "Back to all gadgets", gadgets_path %>

@@ -1,6 +1,8 @@
 class GadgetsController < ApplicationController
+  before_filter :authenticate_user!
+
   def index
-    @all_gadgets = Gadget.where(user_id: current_user.id) if current_user
+    @all_gadgets = Gadget.belonging_to(current_user.id) if current_user
   end
 
   def show
@@ -14,8 +16,12 @@ class GadgetsController < ApplicationController
 
   def create
     @gadget = Gadget.create(params[:gadget])
-    flash[:notice] = 'Your gadget has been saved' if @gadget.save
-    render :new
+    if @gadget.save
+      flash[:notice] = 'Your gadget has been saved'
+      redirect_to gadget_path(@gadget) if @gadget.save
+    else
+      render :new
+    end
   end
 
   def edit
@@ -25,9 +31,17 @@ class GadgetsController < ApplicationController
   def update
     @gadget = Gadget.find(params[:id])
     if @gadget.update_attributes(params[:gadget])
+      flash[:notice] = 'Your gadget has been updated'
       redirect_to(@gadget)
     else
-      render "edit"
+      render :edit
     end
+  end
+
+  def destroy
+    @gadget = Gadget.find(params[:id])
+    @gadget.destroy
+    flash[:notice] = "Successfully destroyed gadget."
+    redirect_to gadgets_path
   end
 end

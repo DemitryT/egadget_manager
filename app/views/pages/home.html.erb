@@ -1,0 +1,7 @@
+<div class="well">
+  <% unless signed_in? %>
+    Welcome to the gadget manager! Start managing your gadgets by <%= link_to "signing up", new_user_registration_path %> or <%= link_to "signing in", new_user_session_path %>.
+  <% else %>
+    Welcome <%= current_user.email %>! Manage your gadgets on <%= link_to "this page", gadgets_path %>.
+  <% end %>
+</div>

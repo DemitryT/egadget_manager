@@ -1,19 +1,34 @@
-<%= form_for(@gadget) do |f| %>
-  <p>
-    <b>gadget name</b><br />
-    <%= f.text_field :name %><br />
+<%= form_for(@gadget, class: "form") do |f| %>
+  <% if @gadget.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@gadget.errors.count, "error") %> prohibited this gadget from being saved:</h2>
 
-    <b>gadget quantity</b><br />
-    <%= f.text_field :quantity %><br />
+      <ul>
+      <% @gadget.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-    <b>Purchased on</b><br />
-    <%= f.date_select(:date_purchased, :order => [:month, :day, :year]) %><br />
+  <div><%= f.label :name %><br />
+  <%= f.text_field :name, :autofocus => true %></div>
 
-    <%= f.hidden_field :user_id, value: current_user.id.to_s %>
-  </p>
+  <div><%= f.label :manufacturer %><br />
+  <%= f.text_field :manufacturer %></div>
+
+  <div><%= f.label :quantity %><br />
+  <%= f.number_field :quantity %></div>
+
+  <div><%= f.label :date_purchased %><br />
+  <%= f.date_select(:date_purchased, :order => [:month, :day, :year]) %></div>
+
+  <%= f.hidden_field :user_id, value: current_user.id.to_s %>
 
   <br />
-  <p>
-    <%= f.submit %>
-  </p>
+  <div class="actions">
+    <%= f.submit 'Submit', class: "btn btn-primary" %>
+  </div>
 <% end %>
+
+
