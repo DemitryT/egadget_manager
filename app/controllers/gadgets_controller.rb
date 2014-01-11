@@ -2,7 +2,9 @@ class GadgetsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @all_gadgets = Gadget.belonging_to(current_user.id) if current_user
+    if current_user
+      @all_gadgets = Gadget.belonging_to(current_user.id).page(params[:page]).per_page(10).order("created_at")
+    end
   end
 
   def show

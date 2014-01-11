@@ -27,6 +27,8 @@
       </tr>
     <% end %>
   </table>
+
+  <%= will_paginate @all_gadgets, previous_label: h("<"), next_label: h(">") %>
 <% else %>
   <p>No gadgets added yet.</p>
   <p>Add one by click the "Add new gadget button" or by <%= link_to "clicking here", new_gadget_path %>.</p>
