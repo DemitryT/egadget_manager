@@ -15,12 +15,12 @@
 
     <% @all_gadgets.each do |gadget| %>
       <tr>
-        <td><%= gadget.name %></td>
+        <td><%= link_to gadget.name, gadget %></td>
         <td><%= gadget.manufacturer.present? ? gadget.manufacturer : "(not provided)" %></td>
         <td><%= gadget.quantity %></td>
         <td><%= gadget.date_purchased.to_time.strftime('%B %e, %Y') %></td>
         <td>
-          <%= link_to "Show", gadget %> |
+          <%= link_to "Details", gadget %> |
           <%= link_to "Edit", edit_gadget_path(gadget) %> |
           <%= link_to "Remove", gadget, method: :delete, data: { confirm: "Are you sure?" } %>
         </td>

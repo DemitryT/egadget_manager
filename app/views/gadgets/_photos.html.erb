@@ -1,0 +1,25 @@
+<% f ||= nil %>
+
+<div class="row list-group">
+  <% @gadget.photos.each do |photo| %>
+    <div class="item  col-xs-4 col-lg-4">
+      <% if f.present? %>
+        <%= f.fields_for :photos, photo do |photo_fields| %>
+          <div class="thumbnail">
+            <%= image_tag photo.gadget_image.url(:medium) %>
+            <div class="caption">
+              <p>
+                <%= photo_fields.check_box :_destroy %>
+                <%= photo_fields.label :_destroy, "Remove" %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="thumbnail">
+          <%= image_tag photo.gadget_image.url(:medium) %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

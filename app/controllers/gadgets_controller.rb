@@ -3,7 +3,7 @@ class GadgetsController < ApplicationController
 
   def index
     if current_user
-      @all_gadgets = Gadget.belonging_to(current_user.id).page(params[:page]).per_page(10).order("created_at")
+      @all_gadgets = Gadget.belonging_to(current_user.id).page(params[:page]).per_page(10).order("created_at DESC")
     end
   end
 
@@ -43,7 +43,7 @@ class GadgetsController < ApplicationController
   def destroy
     @gadget = Gadget.find(params[:id])
     @gadget.destroy
-    flash[:notice] = "Successfully destroyed gadget."
+    flash[:notice] = "Successfully deleted the gadget."
     redirect_to gadgets_path
   end
 end

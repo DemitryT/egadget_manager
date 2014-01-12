@@ -1,11 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h2>
-  <%= @gadget.name %>
-  <%= link_to "Edit", edit_gadget_path(@gadget), class: "btn btn-link" %>
-</h2>
+<%= link_to "Edit this gadget", edit_gadget_path(@gadget), class: 'btn btn-primary' %>
+<%= link_to "Back to all gadgets", gadgets_path, class: 'btn btn-default' %>
 
+<h3>Gadget Details</h3>
 <div class="container-fluid well span6">
+  <p>
+    <b>Name</b>:
+    <%= @gadget.name %>
+  </p>
   <p>
     <b>Manufacturer</b>:
     <%= @gadget.manufacturer.present? ? @gadget.manufacturer : "(not provided)" %>
@@ -20,4 +23,5 @@
   </p>
 </div>
 
-<%= link_to "Back to all gadgets", gadgets_path %>
+<h3>Gadget Photos</h3>
+<%= render "photos" %>
