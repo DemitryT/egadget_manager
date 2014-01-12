@@ -2,8 +2,16 @@ class GadgetsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    if current_user
-      @all_gadgets = Gadget.belonging_to(current_user.id).page(params[:page]).per_page(10).order("created_at DESC")
+    # sorts collection
+    @search = Gadget.belonging_to(current_user.id).search(params[:q])
+    @all_gadgets = @search.result.page(params[:page]).per_page(10).order("created_at DESC")
+
+    # searches collection
+    @search_form = Gadget.search(params[:q])
+    @search_form.build_condition if @search_form.conditions.empty?
+    if params[:q].present? && !@search_form.result.present?
+      flash[:notice] = 'No results found'
+      redirect_to gadgets_path
     end
   end
 

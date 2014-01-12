@@ -1,0 +1,10 @@
+<%= f.attribute_fields do |a| %>
+  <%= a.attribute_select({ associations: [:gadget] }, { class: 'span2' }) %>
+<% end %>
+
+<%= f.value_fields do |v| %>
+  <%= v.text_field :value, class: 'span3', placeholder: 'contains...' %>
+<% end %>
+<%= hidden_field_tag 'q[c][0][p]', 'cont' %>
+
+<%= f.submit 'Search', class: 'btn btn-primary' %>

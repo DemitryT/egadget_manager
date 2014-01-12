@@ -13,8 +13,7 @@ describe "Gadget management" do
   end
 
   it "lets user create a new gadet" do
-    visit gadgets_path
-    click_button "+ Add new gadget"
+    visit new_gadget_path
 
     within("#new_gadget") do
       fill_in 'Name', :with => 'my old ipod'

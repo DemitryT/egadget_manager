@@ -9,6 +9,10 @@ class Gadget < ActiveRecord::Base
 
   accepts_nested_attributes_for :photos, allow_destroy: true
 
+  def self.ransackable_attributes(auth_object = nil)
+    ['name', 'manufacturer', 'date_purchased']
+  end
+
   class << self
     def belonging_to(current_user_id)
       where(user_id: current_user_id)

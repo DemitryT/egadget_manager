@@ -1,0 +1,10 @@
+<div class="well span10">
+  <h3>Search gadgets</h3>
+  <br />
+  <%= search_form_for @search_form, class: "form-search" do |f| %>
+    <%= f.condition_fields do |c| %>
+      <%= render "condition_fields", f: c, search: f %>
+    <% end %>
+  <% end %>
+  <%= link_to "Reset form", gadgets_path if params[:q] %>
+</div>
