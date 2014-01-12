@@ -1,5 +1,5 @@
 class Gadget < ActiveRecord::Base
-  attr_accessible :name, :quantity, :manufacturer, :date_purchased, :user_id
+  attr_accessible :name, :quantity, :manufacturer, :date_purchased, :user_id, :photos_attributes
 
   validates :name, presence: true
   validates :quantity, presence: true
@@ -8,7 +8,6 @@ class Gadget < ActiveRecord::Base
   has_many :photos, dependent: :destroy
 
   accepts_nested_attributes_for :photos, allow_destroy: true
-  attr_accessible :photos_attributes
 
   class << self
     def belonging_to(current_user_id)

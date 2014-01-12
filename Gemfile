@@ -20,8 +20,12 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0.beta'
+gem 'rspec-rails', '~> 3.0.0.beta', :group => [:test, :development]
+
+group :test do
+  gem 'factory_girl_rails'
+  gem "faker", "~> 1.2.0"
+  gem 'shoulda-matchers'
 end
 
 gem 'jquery-rails'
