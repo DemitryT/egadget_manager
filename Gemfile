@@ -24,13 +24,14 @@ gem 'rspec-rails', '~> 3.0.0.beta', :group => [:test, :development]
 
 group :test do
   gem 'factory_girl_rails'
-  gem "faker", "~> 1.2.0"
+  gem 'faker', '~> 1.2.0'
   gem 'shoulda-matchers'
+  gem 'capybara'
 end
 
 gem 'jquery-rails'
 gem 'devise'
-gem "paperclip", "~> 3.0"
+gem 'paperclip', '~> 3.0'
 gem 'will_paginate', '> 3.0'
 
 # To use ActiveModel has_secure_password
