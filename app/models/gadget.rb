@@ -4,7 +4,9 @@ class Gadget < ActiveRecord::Base
   validates :name, presence: true
   validates :quantity, presence: true
 
+  belongs_to :user
   has_many :photos, dependent: :destroy
+
   accepts_nested_attributes_for :photos, allow_destroy: true
   attr_accessible :photos_attributes
 
