@@ -2,10 +2,6 @@ class GadgetsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    # testing houng PRs
-
-    # is the extra line detected? :trollface:
-    
     # sorts collection
     @search = Gadget.belonging_to(current_user.id).search(params[:q])
     @all_gadgets = @search.result.page(params[:page]).per_page(10).order("created_at DESC")
